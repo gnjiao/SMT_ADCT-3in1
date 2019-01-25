@@ -14,6 +14,7 @@
 #define IDD_Order_Dialog                137
 #define IDD_OptionLogin_Dlg             139
 #define IDD_AutoTestOption_Dialog       141
+#define IDD_DIALOG1                     143
 #define IDC_Char_TB                     1001
 #define IDC_NUM_TB                      1002
 #define IDC_BUTTON1                     1003
@@ -154,7 +155,7 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        143
+#define _APS_NEXT_RESOURCE_VALUE        145
 #define _APS_NEXT_COMMAND_VALUE         32910
 #define _APS_NEXT_CONTROL_VALUE         1088
 #define _APS_NEXT_SYMED_VALUE           101
