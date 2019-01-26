@@ -14,7 +14,7 @@
 #define IDD_Order_Dialog                137
 #define IDD_OptionLogin_Dlg             139
 #define IDD_AutoTestOption_Dialog       141
-#define IDD_DIALOG1                     143
+#define IDD_Control_Dialog              143
 #define IDC_Char_TB                     1001
 #define IDC_NUM_TB                      1002
 #define IDC_BUTTON1                     1003
@@ -102,6 +102,8 @@
 #define IDC_ATReTest_CK                 1085
 #define IDC_ATTD_CK                     1086
 #define IDC_ADCTInitStatus_LB           1087
+#define IDC_TestCotrol_Btn              1088
+#define IDC_CFGControl_Btn              1089
 #define ID_FILE_OPENDOWNLOADAGENTFILE   32862
 #define ID_FILE_OPENAUTHENTICATIONFILE  32863
 #define ID_FILE_SCATTERANDLOAD          32864
@@ -157,7 +159,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        145
 #define _APS_NEXT_COMMAND_VALUE         32910
-#define _APS_NEXT_CONTROL_VALUE         1088
+#define _APS_NEXT_CONTROL_VALUE         1090
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

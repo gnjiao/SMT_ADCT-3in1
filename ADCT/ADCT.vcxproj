@@ -192,6 +192,7 @@
     <ClInclude Include="ADCT.h" />
     <ClInclude Include="ADCTDlg.h" />
     <ClInclude Include="ATOptionDlg.h" />
+    <ClInclude Include="ControlDlg.h" />
     <ClInclude Include="CRC.h" />
     <ClInclude Include="DLOption.h" />
     <ClInclude Include="FTPClass.h" />
@@ -214,6 +215,7 @@
     <ClCompile Include="ADCT.cpp" />
     <ClCompile Include="ADCTDlg.cpp" />
     <ClCompile Include="ATOptionDlg.cpp" />
+    <ClCompile Include="ControlDlg.cpp" />
     <ClCompile Include="DLOption.cpp" />
     <ClCompile Include="FTPClass.cpp" />
     <ClCompile Include="LoginDlg.cpp" />
