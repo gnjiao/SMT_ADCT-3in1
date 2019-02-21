@@ -104,6 +104,9 @@
 #define IDC_ADCTInitStatus_LB           1087
 #define IDC_TestCotrol_Btn              1088
 #define IDC_CFGControl_Btn              1089
+#define IDC_STATIC10                    1090
+#define IDC_STATIC11                    1091
+#define IDC_STATIC12                    1092
 #define ID_FILE_OPENDOWNLOADAGENTFILE   32862
 #define ID_FILE_OPENAUTHENTICATIONFILE  32863
 #define ID_FILE_SCATTERANDLOAD          32864
@@ -159,7 +162,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        145
 #define _APS_NEXT_COMMAND_VALUE         32910
-#define _APS_NEXT_CONTROL_VALUE         1090
+#define _APS_NEXT_CONTROL_VALUE         1093
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif
