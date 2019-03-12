@@ -78,6 +78,12 @@
     <ClInclude Include="ControlDlg.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ATESetDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CMyListCtrl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ADCT.cpp">
@@ -129,6 +135,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="ControlDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ATESetDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CMyListCtrl.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

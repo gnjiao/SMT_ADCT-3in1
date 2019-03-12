@@ -191,7 +191,9 @@
   <ItemGroup>
     <ClInclude Include="ADCT.h" />
     <ClInclude Include="ADCTDlg.h" />
+    <ClInclude Include="ATESetDlg.h" />
     <ClInclude Include="ATOptionDlg.h" />
+    <ClInclude Include="CMyListCtrl.h" />
     <ClInclude Include="ControlDlg.h" />
     <ClInclude Include="CRC.h" />
     <ClInclude Include="DLOption.h" />
@@ -214,7 +216,9 @@
   <ItemGroup>
     <ClCompile Include="ADCT.cpp" />
     <ClCompile Include="ADCTDlg.cpp" />
+    <ClCompile Include="ATESetDlg.cpp" />
     <ClCompile Include="ATOptionDlg.cpp" />
+    <ClCompile Include="CMyListCtrl.cpp" />
     <ClCompile Include="ControlDlg.cpp" />
     <ClCompile Include="DLOption.cpp" />
     <ClCompile Include="FTPClass.cpp" />

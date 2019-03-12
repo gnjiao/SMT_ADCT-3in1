@@ -15,6 +15,7 @@
 #define IDD_OptionLogin_Dlg             139
 #define IDD_AutoTestOption_Dialog       141
 #define IDD_Control_Dialog              143
+#define IDD_ATESet_Dialog               145
 #define IDC_Char_TB                     1001
 #define IDC_NUM_TB                      1002
 #define IDC_BUTTON1                     1003
@@ -84,6 +85,7 @@
 #define IDC_OrderName_CCB               1068
 #define IDC_OrderStatic_LB              1069
 #define IDC_BUTTON4                     1070
+#define IDC_ATESet_Btn                  1070
 #define IDC_UserName_TB                 1071
 #define IDC_Pwd_TB                      1072
 #define IDC_ManagerName_TB              1073
@@ -107,6 +109,12 @@
 #define IDC_STATIC10                    1090
 #define IDC_STATIC11                    1091
 #define IDC_STATIC12                    1092
+#define IDC_ATELossList_ListControl     1094
+#define IDC_List_TB                     1095
+#define IDC_GPIBAddress1_TB             1096
+#define IDC_GPIBAddress2_TB             1097
+#define IDC_GPIBAddress3_TB             1098
+#define IDC_GPIBAddress4_TB             1099
 #define ID_FILE_OPENDOWNLOADAGENTFILE   32862
 #define ID_FILE_OPENAUTHENTICATIONFILE  32863
 #define ID_FILE_SCATTERANDLOAD          32864
@@ -160,9 +168,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        145
+#define _APS_NEXT_RESOURCE_VALUE        147
 #define _APS_NEXT_COMMAND_VALUE         32910
-#define _APS_NEXT_CONTROL_VALUE         1093
+#define _APS_NEXT_CONTROL_VALUE         1097
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

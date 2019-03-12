@@ -35,4 +35,5 @@ public:
 	CString UART_CRC16_Work(unsigned char CRC_Buf[], int CRC_Leni);
 	int TStringToHex(char s[], unsigned char bits[]);
 	BYTE * CStrToByte(int len, CString str);
+	void CreateDirectoryRecursionFun(CString Src, int StartCount);
 };

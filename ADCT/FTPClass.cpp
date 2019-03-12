@@ -58,14 +58,16 @@ bool FTPClass::FindFile(CString FullName)
 	}
 	else
 	{
-		AfxMessageBox("在FTP服务器中，没有找到文件");
+		CString ErrorChar;
+		ErrorChar.Format("在FTP服务器中，没有找到文件:%s", FullName);
+		AfxMessageBox(ErrorChar);
 	}
 	return IsFindFile;
 }
 UINT DownloadThreadFun(LPVOID pParam)
 {
 	DownloadFilePath* pathInfo = (DownloadFilePath*)pParam;
-	int getError = psMyCFtpConnection->GetFile(pathInfo->FileFullName, pathInfo->LocalPath);
+	int getError = psMyCFtpConnection->GetFile(pathInfo->FileFullName, pathInfo->LocalPath,FALSE);
 	/*if (getError==0)
 	{
 		CString ErrorCode;
@@ -81,7 +83,7 @@ UINT DownloadStatusThreadFun(LPVOID pParam)
 	CFileStatus status;
 	
 	m_downloadInfo.LocalFileSize = 0;//先将文件大小赋值为0,循环赋值
-	while (m_downloadInfo.LocalFileSize <=  pathInfo->ServerFileSize)
+	while (m_downloadInfo.LocalFileSize <=  pathInfo->ServerFileSize&&m_DownloadExit==false)
 	{
 		CFile::GetStatus(pathInfo->LocalPath, status);
 		m_downloadInfo.LocalFileSize = status.m_size;

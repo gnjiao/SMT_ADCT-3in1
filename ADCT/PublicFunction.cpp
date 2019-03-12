@@ -501,8 +501,51 @@ BYTE * CPublicFunction::CStrToByte(int len, CString str)
 	for (int iSrc = 0, iDst = 0; iDst < len; iSrc += 2, iDst++)
 	{
 		StrSub = str.Mid(iSrc, 2);
-		Buf[iDst] = (BYTE)_tcstoul(StrSub, NULL, 16);//16是十六进制的意思
+		Buf[iDst] = (BYTE)_tcstoul(StrSub, NULL, 16);//十六进制
 	}
 	return Buf;
 }
 
+typedef std::uint64_t hash_t;
+
+constexpr hash_t prime = 0x100000001B3ull;
+constexpr hash_t basis = 0xCBF29CE484222325ull;
+
+hash_t hash_(char const* str)
+{
+	hash_t ret{ basis };
+
+	while (*str) {
+		ret ^= *str;
+		ret *= prime;
+		str++;
+	}
+
+	return ret;
+}
+
+constexpr hash_t hash_compile_time(char const* str, hash_t last_value = basis)
+{
+	return *str ? hash_compile_time(str + 1, (*str ^ last_value) * prime) : last_value;
+}
+
+constexpr unsigned long long operator "" _hash(char const* p, size_t)
+{
+	return hash_compile_time(p);
+}
+//递归创建目录
+void CPublicFunction::CreateDirectoryRecursionFun(CString Src, int StartCount)
+{
+	CString SrcTemp;
+	int EndCount;
+	EndCount = Src.Find(_T("\\"), StartCount);
+	if (EndCount != -1)
+	{
+		SrcTemp = Src.Left(EndCount);
+		if (!PathIsDirectory(SrcTemp))
+		{
+			::CreateDirectory(SrcTemp, NULL);
+		}
+		return CreateDirectoryRecursionFun(Src, EndCount + 1);//使用尾递归，减小资源消耗
+	}
+}
