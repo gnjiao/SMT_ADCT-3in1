@@ -86,26 +86,55 @@ void WinRARClass::DeleteDirectories(CString csPath)
 
 void WinRARClass::FindWinRARPath()
 {
-	HKEY hKEY;
+	HKEY hKEY32,hKEY64, hKEY;
 	HKEY  hKeyRoot = HKEY_LOCAL_MACHINE;
-	long ret0 = (::RegOpenKeyEx(hKeyRoot, "SOFTWARE\\WinRAR", 0, KEY_READ | KEY_WOW64_64KEY, &hKEY));
+	long ret32 = (::RegOpenKeyEx(hKeyRoot, "SOFTWARE\\WinRAR", 0, KEY_READ | KEY_WOW64_32KEY, &hKEY32));
+	long ret64 = (::RegOpenKeyEx(hKeyRoot, "SOFTWARE\\WinRAR", 0, KEY_READ | KEY_WOW64_64KEY, &hKEY64));
 	/*CString temp;
 	temp.Format("%d", ret0);
 	AfxMessageBox(temp);*/
-	if (ret0 != ERROR_SUCCESS)//如果无法打开hKEY,则中止程序的执行
+	if (ret32== ERROR_SUCCESS)
+	{
+		hKEY = hKEY32;
+		LPBYTE getValue1 = new BYTE[80];//得到的键值
+		DWORD keyType = REG_SZ;//定义数据类型
+		DWORD DataLen = 80;//定义数据长度
+		CString strUser = _T("exe32");//要查询的键名称
+		long ret1 = ::RegQueryValueEx(hKEY, strUser, NULL, &keyType, getValue1, &DataLen);
+
+		if (ret1 == ERROR_SUCCESS)
+		{
+			winRarInstallPath = (char*)getValue1;
+		}
+		else
+		{
+			AfxMessageBox("错误：无法查询到WINRAR的注册表信息");
+		}
+	}
+	else if (ret64 == ERROR_SUCCESS)
+	{
+		hKEY = hKEY64;
+		LPBYTE getValue2 = new BYTE[80];//得到的键值
+		DWORD keyType = REG_SZ;//定义数据类型
+		DWORD DataLen = 80;//定义数据长度
+		CString strUser64 = _T("exe64");//要查询的键名称
+		long ret2 = ::RegQueryValueEx(hKEY, strUser64, NULL, &keyType, getValue2, &DataLen);
+		if (ret2 == ERROR_SUCCESS)
+		{
+			winRarInstallPath = (char*)getValue2;
+		}
+		else
+		{
+			AfxMessageBox("错误：无法查询到WINRAR的注册表信息");
+		}
+	}
+	else//如果无法打开hKEY,则中止程序的执行
 	{
 		AfxMessageBox("错误：无法打开有关的hKEY");
 		return;
 	}
-	LPBYTE getValue = new BYTE[80];//得到的键值
-	DWORD keyType = REG_SZ;//定义数据类型
-	DWORD DataLen = 80;//定义数据长度
-	CString strUser = _T("exe64");//要查询的键名称
-	long ret1 = ::RegQueryValueEx(hKEY, strUser, NULL, &keyType, getValue, &DataLen);
-	if (ret1 != ERROR_SUCCESS)
-	{
-		AfxMessageBox("错误：无法查询有关的注册表信息");
-		return;
-	}
-	winRarInstallPath=(char*)getValue;
+	
+	
+	
+	
 }
