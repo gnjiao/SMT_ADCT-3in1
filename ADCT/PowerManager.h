@@ -10,6 +10,7 @@ extern CStringArray	CommandListBackup;
 extern CStringArray	CheckRecvList;
 extern CThreadPool* m_lpThreadPool;
 extern HANDLE hCom;
+extern bool PowerStatus[4];
 
 
 class PowerManager

@@ -84,6 +84,15 @@
     <ClInclude Include="CMyListCtrl.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ADCTSetDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ExceptionReport.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ADCTPCBackEndManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ADCT.cpp">
@@ -141,6 +150,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="CMyListCtrl.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ADCTSetDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ADCTPCBackEndManager.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

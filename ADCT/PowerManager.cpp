@@ -12,6 +12,7 @@ CStringArray	CheckRecvList;
 bool ReadOff = true;
 bool ThreadIsCreate = false;
 CThreadPool *m_lpThreadPool = NULL;
+bool PowerStatus[4] = { false,false, false, false };
 
 
 PowerManager::PowerManager()
@@ -198,7 +199,7 @@ void PowerManager::SendThread()
 			dwBytesWrite = SendPortBuffer.length();
 			if (SendPortBuffer == "")
 			{
-				Sleep(atoi(SleepTimer));
+				//Sleep(atoi(SleepTimer));
 				continue;
 			}
 			BYTE * SendByte = pf.CStrToByte(SendPortBuffer.length(), SendPortBuffer.data());

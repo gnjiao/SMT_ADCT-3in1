@@ -475,7 +475,7 @@ CString CPublicFunction::UART_CRC16_Work(unsigned char CRC_Buf[], int CRC_Leni)
 	CRC_Temp = CRC_Sumx >> 8;
 	CRC_Temp = CRC_Temp | (CRC_Sumx << 8);
 	printf("%X\n", CRC_Temp);
-	CRC_Rec.Format("%X", CRC_Temp);
+	CRC_Rec.Format("%04X", CRC_Temp);
 	return (CRC_Rec);
 }
 

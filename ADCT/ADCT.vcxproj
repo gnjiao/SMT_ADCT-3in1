@@ -148,8 +148,9 @@
       <OptimizeReferences>false</OptimizeReferences>
       <AdditionalOptions>/SAFESEH:NO %(AdditionalOptions)</AdditionalOptions>
       <StackReserveSize>10240000</StackReserveSize>
-      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
       <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
+      <GenerateMapFile>true</GenerateMapFile>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -191,12 +192,15 @@
   <ItemGroup>
     <ClInclude Include="ADCT.h" />
     <ClInclude Include="ADCTDlg.h" />
+    <ClInclude Include="ADCTPCBackEndManager.h" />
+    <ClInclude Include="ADCTSetDlg.h" />
     <ClInclude Include="ATESetDlg.h" />
     <ClInclude Include="ATOptionDlg.h" />
     <ClInclude Include="CMyListCtrl.h" />
     <ClInclude Include="ControlDlg.h" />
     <ClInclude Include="CRC.h" />
     <ClInclude Include="DLOption.h" />
+    <ClInclude Include="ExceptionReport.h" />
     <ClInclude Include="FTPClass.h" />
     <ClInclude Include="LoginDlg.h" />
     <ClInclude Include="ManagerLoginDlg.h" />
@@ -216,6 +220,8 @@
   <ItemGroup>
     <ClCompile Include="ADCT.cpp" />
     <ClCompile Include="ADCTDlg.cpp" />
+    <ClCompile Include="ADCTPCBackEndManager.cpp" />
+    <ClCompile Include="ADCTSetDlg.cpp" />
     <ClCompile Include="ATESetDlg.cpp" />
     <ClCompile Include="ATOptionDlg.cpp" />
     <ClCompile Include="CMyListCtrl.cpp" />
