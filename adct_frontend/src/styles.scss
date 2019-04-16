@@ -1,0 +1,107 @@
+/* theme color */
+$--color-primary: #4BC0C0;
+
+/* icon font path, required */
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+@import "~element-ui/packages/theme-chalk/src/index";
+
+//el-scroll
+.el-scrollbar__wrap {
+  overflow-x: hidden;
+}
+
+.el-select-dropdown .el-scrollbar .el-scrollbar__wrap {
+  overflow: scroll;
+}
+.el-table-filter .el-scrollbar .el-scrollbar__wrap {
+  overflow: scroll;
+}
+
+//el-select
+.el-select {
+  width: 100%;
+}
+
+//el-dialog
+.el-dialog {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: 0 !important;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border-radius: 6px;
+  font-size: 16px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  text-align: left;
+  height: calc(100% - 50px);
+  max-width: calc(100% - 30px);
+  padding-bottom: 10px;
+  width: 80%;
+  color: #797979;
+  overflow: hidden;
+}
+
+.el-dialog__title {
+  color: #797979;
+}
+
+.el-dialog__body {
+  height:calc(100% - 55px);
+  padding: 10px 30px;
+  color: #797979;
+  font-size: 14px;
+}
+
+.el-dialog__close {
+  font-size: 24px;
+}
+
+//el-tabs
+.el-tabs {
+  height: 100%;
+}
+
+.el-tabs__content {
+  height: calc(100% - 64px);
+  overflow: hidden;
+}
+
+.el-tab-pane {
+  height: 100%;
+}
+
+.el-tabs--border-card {
+  box-shadow: none;
+}
+
+.el-tabs__item {
+  font-size: 16px;
+  color: #797979;
+  span {
+    display: flex;
+    align-items: center;
+  }
+}
+
+//el-table
+.el-table .error-row {
+  color: red;
+}
+
+.el-table .info-row {
+  color: #909399;
+}
+
+.el-table .warn-row {
+  color: #E6A23C;
+}
+
+.el-table .failed-row {
+  color: #F56C6C;
+}
+
+.el-table .succeed-row {
+  color: #4BC0C0;
+}
