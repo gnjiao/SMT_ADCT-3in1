@@ -39,7 +39,7 @@ public class PackageLogger {
 		} catch (NullPointerException e) {
 		}
 		try {
-			log.setPackageRequest(pair.getResponsePackage().getBody().toString());
+			log.setPackageResponse(pair.getResponsePackage().getBody().toString());
 		} catch (NullPointerException e) {
 		}
 		return log;
