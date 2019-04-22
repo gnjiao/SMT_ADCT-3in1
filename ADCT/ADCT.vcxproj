@@ -148,9 +148,9 @@
       <OptimizeReferences>false</OptimizeReferences>
       <AdditionalOptions>/SAFESEH:NO %(AdditionalOptions)</AdditionalOptions>
       <StackReserveSize>10240000</StackReserveSize>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
       <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
-      <GenerateMapFile>true</GenerateMapFile>
+      <GenerateMapFile>false</GenerateMapFile>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>

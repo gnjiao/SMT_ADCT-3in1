@@ -11,6 +11,11 @@ ADCTPCBackEndManager::~ADCTPCBackEndManager()
 {
 }
 
+CString ADCTPCBackEndManager::BackEndRegKeyReader()
+{
+	return "";
+}
+
 void ADCTPCBackEndManager::LogSend()
 {
 

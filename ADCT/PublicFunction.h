@@ -36,4 +36,7 @@ public:
 	int TStringToHex(char s[], unsigned char bits[]);
 	BYTE * CStrToByte(int len, CString str);
 	void CreateDirectoryRecursionFun(CString Src, int StartCount);
+	bool CreatRegKey(HKEY HKey, CString KeyPath, CString KeyName, CString KeyValue);
+	bool GetSysBit();
+	CString RegKey(bool Option, HKEY HKey, CString KeyPath, CString KeyName, CString KeyValue);
 };

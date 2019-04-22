@@ -549,3 +549,125 @@ void CPublicFunction::CreateDirectoryRecursionFun(CString Src, int StartCount)
 		return CreateDirectoryRecursionFun(Src, EndCount + 1);//使用尾递归，减小资源消耗
 	}
 }
+
+bool CPublicFunction::CreatRegKey(HKEY HKey, CString KeyPath, CString KeyName, CString KeyValue)
+{
+	HKEY  hKey;
+	DWORD  dwDisposition;
+	long lRetCode;
+	if (GetSysBit())
+	{
+		lRetCode = RegCreateKeyEx(HKey,
+			KeyPath,
+			0, NULL, REG_OPTION_NON_VOLATILE, KEY_WRITE | KEY_WOW64_32KEY,
+			NULL, &hKey, &dwDisposition);
+	}
+	else
+	{
+		lRetCode = RegCreateKeyEx(HKey,
+			KeyPath,
+			0, NULL, REG_OPTION_NON_VOLATILE, KEY_WRITE | KEY_WOW64_64KEY,
+			NULL, &hKey, &dwDisposition);
+	}
+
+
+	if (lRetCode != ERROR_SUCCESS)
+	{
+		//MessageBox(_T("注册表创建失败\n"));
+		return false;
+	}
+
+	BYTE*   pByte = (BYTE*)KeyValue.GetBuffer(KeyValue.GetLength());
+	KeyValue.ReleaseBuffer();
+
+	lRetCode = RegSetValueEx(hKey, KeyName,
+		0, REG_SZ,
+		pByte,
+		KeyValue.GetLength());
+
+	if (lRetCode != ERROR_SUCCESS) {
+		//MessageBox(_T("注册表修改失败\n"));
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
+
+bool CPublicFunction::GetSysBit()
+{
+	SYSTEM_INFO si;
+	// Copy the hardware information to the SYSTEM_INFO structure.
+	GetNativeSystemInfo(&si);
+	// Display the contents of the SYSTEM_INFO structure.
+	printf("si.wProcessorArchitecture = %d\nPROCESSOR_ARCHITECTURE_AMD64 = %d\nPROCESSOR_ARCHITECTURE_IA64 = %d\n",
+		si.wProcessorArchitecture, PROCESSOR_ARCHITECTURE_AMD64, PROCESSOR_ARCHITECTURE_IA64);
+	if (si.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_AMD64 || si.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_IA64)
+	{
+		return false;
+	}
+	else {
+		return true;
+	}
+}
+
+CString CPublicFunction::RegKey(bool Option, HKEY HKey, CString KeyPath, CString KeyName, CString KeyValue)//true Set false Get
+{
+	HKEY hKEY;
+	long ret;
+	if (GetSysBit())
+	{
+		ret = (::RegOpenKeyEx(HKey, KeyPath, 0, KEY_WRITE | KEY_READ | KEY_WOW64_32KEY, &hKEY));
+	}
+	else
+	{
+		ret = (::RegOpenKeyEx(HKey, KeyPath, 0, KEY_WRITE | KEY_READ | KEY_WOW64_64KEY, &hKEY));
+	}
+
+	/*CString temp;
+	temp.Format("%d", ret0);
+	AfxMessageBox(temp);*/
+	if (ret == ERROR_SUCCESS)
+	{
+		if (Option)
+		{
+			BYTE*   pByte = (BYTE*)KeyValue.GetBuffer(KeyValue.GetLength());
+			long lRetCode = RegSetValueEx(hKEY,
+				KeyName,
+				0,
+				REG_SZ,
+				pByte,
+				20);
+
+			if (lRetCode != ERROR_SUCCESS) {
+				return "true";
+
+			}
+		}
+		else
+		{
+			LPBYTE getValue = new BYTE[80];//得到的键值
+			DWORD keyType = REG_SZ;//定义数据类型
+			DWORD DataLen = 80;//定义数据长度
+			long ret1 = ::RegQueryValueEx(hKEY, KeyName, NULL, &keyType, getValue, &DataLen);
+
+			if (ret1 == ERROR_SUCCESS)
+			{
+				return (char*)getValue;
+			}
+			else
+			{
+				printf("错误：无法查询到对应地址的注册表信息");
+				return "";
+			}
+		}
+
+	}
+
+	else//如果无法打开hKEY,则中止程序的执行
+	{
+		printf(_T("错误：无法打开有关的hKEY"));
+		return "";
+	}
+}

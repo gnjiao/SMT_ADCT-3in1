@@ -204,7 +204,9 @@ void PowerManager::SendThread()
 			}
 			BYTE * SendByte = pf.CStrToByte(SendPortBuffer.length(), SendPortBuffer.data());
 			do {
+				SendMessage(MainFormHwnd, WM_SETTEXT, PowerReadMessage, (LPARAM)(LPCTSTR)SendPortBuffer.c_str());
 				bWriteStat = WriteFile(hCom, SendByte, SendPortBuffer.length()/2, &dwBytesWrite, NULL);
+
 				Sleep(atoi(SleepTimer));
 			} while (0);//只执行一次
 		}
