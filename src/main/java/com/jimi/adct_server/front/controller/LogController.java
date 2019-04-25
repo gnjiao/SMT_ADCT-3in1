@@ -10,7 +10,7 @@ import com.jimi.adct_server.comm.util.ResultFactory;
 import com.jimi.adct_server.front.annotation.Log;
 
 /**
- * CYT报表控制器
+ * 日志控制器
  * <br>
  * <b>2019年3月28日</b>
  * @author 几米物联自动化部-洪达浩

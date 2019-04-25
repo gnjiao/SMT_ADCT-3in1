@@ -1,11 +1,10 @@
-package com.jimi.adct_server.adct.controller;
+package com.jimi.adct_server.adct.handler;
 
 import java.text.ParseException;
 import java.util.Date;
 
 import javax.websocket.Session;
 
-import com.alibaba.fastjson.JSONObject;
 import com.jfinal.aop.Enhancer;
 import com.jimi.adct_server.adct.container.SessionBox;
 import com.jimi.adct_server.comm.constant.ADCTLogType;
@@ -18,17 +17,17 @@ import com.jimi.adct_server.comm.util.ResultFactory.Result;
 import cc.darhao.dautils.api.DateUtil;
 
 /**
- * 实例端日志控制器
+ * 实例端日志处理器
  * <br>
  * <b>2019年4月11日</b>
  * @author 几米物联自动化部-洪达浩
  */
-public class LogController {
+public class LogHandler {
 
-	private static LogService logService = Enhancer.enhance(LogService.class);
+	private LogService logService = Enhancer.enhance(LogService.class);
 	
 	
-	public static Result log(Session session, JSONObject requestBody) {
+	public Result log(Session session, String time, String type, String message) {
 		//判断是否已经登录
 		Integer adctId = SessionBox.getIdBySession(session);
 		if(adctId == null){
@@ -36,18 +35,20 @@ public class LogController {
 		}
 		//记录实例工作日志
 		try {
-			Date time = DateUtil.yyyyMMddHHmmss(requestBody.getString("time"));
-			Integer type = getTypeIdByName(requestBody.getString("type"));
-			String message = requestBody.getString("message");
-			logService.saveADCTLog(adctId, message, type, time);
+			Date timeDate = DateUtil.yyyyMMddHHmmss(time);
+			if(timeDate.getYear() > 9999) {
+				throw new ParameterException("时间不能超过9999年");
+			}
+			Integer typeId = getTypeIdByName(type);
+			logService.saveADCTLog(adctId, message, typeId, timeDate);
 			return ResultFactory.succeed("保存日志成功");
-		} catch (ParseException e) {
-			throw new ParameterException("不符合格式【yyyy-MM-dd HH:mm:ss】的时间字符串："+requestBody.getString("time"));
+		} catch (ParseException ignore) {
+			throw new ParameterException("不符合格式【yyyy-MM-dd HH:mm:ss】的时间字符串："+time);
 		}
 	}
 
 
-	private static Integer getTypeIdByName(String typeName) {
+	private Integer getTypeIdByName(String typeName) {
 		switch (typeName) {
 		case ADCTLogType.ERROR_STRING:
 			return ADCTLogType.ERROR_CODE;

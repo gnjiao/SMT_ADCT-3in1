@@ -3,6 +3,7 @@ package com.jimi.adct_server.comm.exception;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import cc.darhao.pasta.TimeoutException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -27,7 +28,7 @@ public class ExceptionManager {
 		exceptionMap.put(AccessException.class, ResultCode.ACCESS_EXCEPTION_CODE);
 		exceptionMap.put(OperationException.class, ResultCode.OPERATION_EXCEPTION_CODE);
 		exceptionMap.put(ThirdPartyException.class, ResultCode.THIRD_PARTY_EXCEPTION_CODE);
-		exceptionMap.put(RequestTimeoutException.class, ResultCode.REQUEST_TIMEOUT_EXCEPTION_CODE);
+		exceptionMap.put(TimeoutException.class, ResultCode.REQUEST_TIMEOUT_EXCEPTION_CODE);
 		exceptionMap.put(ParameterException.class, ResultCode.PARAMETER_EXCEPTION_CODE);
 		exceptionMap.put(UnknownException.class, ResultCode.UNKNOWN_SERVER_EXCEPTION_CODE);
 	}

@@ -1,5 +1,7 @@
 package com.jimi.adct_server.adct.socket;
 
+import java.io.IOException;
+
 import javax.websocket.CloseReason;
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
@@ -11,9 +13,11 @@ import javax.websocket.server.ServerEndpoint;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.alibaba.fastjson.JSONException;
 import com.jimi.adct_server.adct.container.SessionBox;
-import com.jimi.adct_server.adct.handle.PackageReceiver;
 import com.jimi.adct_server.comm.util.ErrorLogger;
+
+import cc.darhao.pasta.Pasta;
 
 
 /**
@@ -37,7 +41,13 @@ public class ProductWebSocket {
 	@OnMessage
 	public void onMessage(Session session, String message) {
 		logger.debug("session收到信息，ID为:"+session.getId()+"，信息为:"+message);
-		PackageReceiver.recevie(session, message);
+		try {
+			Pasta.receiveMessage(session, message);
+		} catch (IOException e) {
+			logger.error("session发生错误，ID为:"+session.getId()+"，信息为:"+e.getMessage());
+		} catch (JSONException e) {
+			logger.warn(e.getMessage());
+		}
 	}
 
 
@@ -53,7 +63,7 @@ public class ProductWebSocket {
 		if(error instanceof Exception) {
 			ErrorLogger.logError(logger, (Exception) error);
 		}else {
-			logger.warn("session发生错误，ID为:"+session.getId()+"，信息为:"+error.getMessage());
+			logger.error("session发生错误，ID为:"+session.getId()+"，信息为:"+error.getMessage());
 		}
 		
 	}

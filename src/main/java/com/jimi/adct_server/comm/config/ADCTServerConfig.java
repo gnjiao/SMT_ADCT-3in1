@@ -22,8 +22,13 @@ import com.jfinal.plugin.activerecord.dialect.SqlServerDialect;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.template.Engine;
-import com.jimi.adct_server.adct.handle.WebSocketHandler;
-import com.jimi.adct_server.adct.timer.RequestTimeoutCheckTimer;
+import com.jimi.adct_server.adct.filter.AccessFilter;
+import com.jimi.adct_server.adct.filter.ExceptionCatchFilter;
+import com.jimi.adct_server.adct.handler.LogHandler;
+import com.jimi.adct_server.adct.handler.LoginHandler;
+import com.jimi.adct_server.adct.logger.PackageLogger;
+import com.jimi.adct_server.comm.constant.RequestTypeTimeoutTimeManager;
+import com.jimi.adct_server.comm.handler.WebSocketHandler;
 import com.jimi.adct_server.comm.model.MssqlMappingKit;
 import com.jimi.adct_server.comm.model.MysqlMappingKit;
 import com.jimi.adct_server.front.controller.ControlController;
@@ -37,6 +42,8 @@ import com.jimi.adct_server.front.interceptor.ActionLogInterceptor;
 import com.jimi.adct_server.front.interceptor.CORSInterceptor;
 import com.jimi.adct_server.front.interceptor.ErrorLogInterceptor;
 import com.jimi.adct_server.front.util.TokenBox;
+
+import cc.darhao.pasta.Pasta;
 
 /**
  * 全局配置
@@ -134,16 +141,22 @@ public class ADCTServerConfig extends JFinalConfig {
 	@Override
 	public void afterJFinalStart() {
 		TokenBox.start(48);
-		RequestTimeoutCheckTimer.start();
 		 //设置日志等级
 	    Configurator.setRootLevel(level);
+	    //Pasta设置
+	    Pasta.bindRoute("login", LoginHandler.class);
+	    Pasta.bindRoute("log", LogHandler.class);
+	    Pasta.setLogCatcher(new PackageLogger());
+	    Pasta.addFilter(new ExceptionCatchFilter());
+	    Pasta.addFilter(new AccessFilter());
+	    Pasta.startRequestTimeoutChecker(RequestTypeTimeoutTimeManager.getMap());
 	}
 	
 	
 	@Override
 	public void beforeJFinalStop() {
 		TokenBox.stop();
-		RequestTimeoutCheckTimer.stop();
+		Pasta.stopRequestTimeoutChecker();
 	}
 	
 	

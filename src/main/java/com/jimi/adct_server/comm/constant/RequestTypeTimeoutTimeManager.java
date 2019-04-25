@@ -1,9 +1,7 @@
-package com.jimi.adct_server.adct.timer;
+package com.jimi.adct_server.comm.constant;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import com.jimi.adct_server.comm.constant.ADCTPastaType;
 
 /**
  * 各种请求类型的超时时间
@@ -36,8 +34,8 @@ public class RequestTypeTimeoutTimeManager {
 		map.put(ADCTPastaType.GET_ORDERS, GET_ORDERS);
 	}
 	
-	public static long getTimeoutTime(String type) {
-		return map.get(type);
+	public static Map<String, Long> getMap() {
+		return map;
 	}
 	
 }

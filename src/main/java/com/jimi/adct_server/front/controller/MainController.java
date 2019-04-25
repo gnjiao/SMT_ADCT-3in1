@@ -8,7 +8,7 @@ import com.jimi.adct_server.front.annotation.Log;
 import com.jimi.adct_server.front.util.TokenBox;
 
 /**
- * CYT报表控制器
+ * 主控制器
  * <br>
  * <b>2019年3月28日</b>
  * @author 几米物联自动化部-洪达浩
